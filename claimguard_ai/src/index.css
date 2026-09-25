@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #141414;
+    color: #F5F5F5;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', sans-serif;
+  }
+}
+
+/* Glassmorphism custom helper utilities */
+.glass-panel {
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(52, 52, 52, 0.7);
+}
+
+.glass-card {
+  background: rgba(34, 34, 34, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(52, 52, 52, 0.6);
+}
+
+.glass-pill {
+  background: rgba(34, 34, 34, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(52, 52, 52, 0.8);
+}
+
+/* Custom glow utility */
+.glow-emerald {
+  box-shadow: 0 0 25px -5px rgba(0, 200, 120, 0.25);
+}
+
+.glow-emerald-lg {
+  box-shadow: 0 0 40px -5px rgba(0, 200, 120, 0.35);
+}
+
+/* Custom dark scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #343434;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00C878;
+}
+
+/* Modern input range styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #222222;
+  border: 1px solid #343434;
+  border-radius: 9999px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00C878;
+  border: 2px solid #141414;
+  box-shadow: 0 0 8px rgba(0, 200, 120, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(0, 200, 120, 0.9);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00C878;
+  border: 2px solid #141414;
+  box-shadow: 0 0 8px rgba(0, 200, 120, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(0, 200, 120, 0.9);
+}
+
+/* Prevent number input spinners from distorting layout */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
