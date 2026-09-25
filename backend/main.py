@@ -158,11 +158,10 @@ app = FastAPI(
     openapi_url="/api/openapi.json"
 )
 
-# IMPORTANT: On Vercel, the "/api/(.*)" rewrite in vercel.json forwards the
-# FULL original path to this service (Vercel does NOT strip the "/api" prefix
-# before proxying). So every route here must live under "/api", or requests
-# coming through the deployed domain will 404 before they ever reach the model.
-api_router = APIRouter(prefix="/api")
+# IMPORTANT: On Vercel, the "/api/(.*)" rewrite forwards the full original
+# path to this service. The router is mounted under `/api` below for deployment
+# and at the root as a compatibility path for existing local frontends.
+api_router = APIRouter()
 
 # Configure CORS specifically for frontend development and local hosts
 allowed_origins = [
@@ -271,7 +270,10 @@ def predict_claim(claim_input: ClaimPredictionInput):
             detail="Unable to analyze this claim. Please check the entered information and try again."
         )
 
-app.include_router(api_router)
+# Keep the deployed `/api/...` routes and expose the same endpoints at the
+# root for existing local frontends that call `/predict` directly.
+app.include_router(api_router, prefix="/api")
+app.include_router(api_router, include_in_schema=False)
 
 if __name__ == "__main__":
     import uvicorn
